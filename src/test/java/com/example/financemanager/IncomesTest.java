@@ -111,6 +111,53 @@ public class IncomesTest {
     }
 
     @Test
+    public void shouldInsertIncomes(FxRobot robot) {
+        verifyThat("Ajouter", isVisible());
+        robot.clickOn("Ajouter");
+        verifyThat(".title-text", hasText("Tableau récapitulatif des revenus"));
+
+        verifyThat("#dateField", isVisible());
+        TextField textField = robot.lookup("#dateField").query();
+        String inputText = "01/01/21";
+        robot.clickOn("#dateField").write(inputText);
+        assertThat("La valeur du champ de texte est incorrecte.", textField.getText(), equalTo(inputText));
+
+        verifyThat("#salaryField", isVisible());
+        TextField textField2 = robot.lookup("#salaryField").query();
+        String inputText2 = "50.0";
+        robot.clickOn("#salaryField").write(inputText2);
+        assertThat("La valeur du champ de texte est incorrecte.", textField2.getText(), equalTo(inputText2));
+
+        verifyThat("#helpersField", isVisible());
+        TextField textField3 = robot.lookup("#helpersField").query();
+        String inputText3 = "60.0";
+        robot.clickOn("#helpersField").write(inputText3);
+        assertThat("La valeur du champ de texte est incorrecte.", textField3.getText(), equalTo(inputText3));
+
+        verifyThat("#autoBusinessField", isVisible());
+        TextField textField4 = robot.lookup("#autoBusinessField").query();
+        String inputText4 = "70.0";
+        robot.clickOn("#autoBusinessField").write(inputText4);
+        assertThat("La valeur du champ de texte est incorrecte.", textField4.getText(), equalTo(inputText4));
+
+        verifyThat("#passiveIncomeField", isVisible());
+        TextField textField5 = robot.lookup("#passiveIncomeField").query();
+        String inputText5 = "80.0";
+        robot.clickOn("#passiveIncomeField").write(inputText5);
+        assertThat("La valeur du champ de texte est incorrecte.", textField5.getText(), equalTo(inputText5));
+
+        verifyThat("#otherField", isVisible());
+        TextField textField6 = robot.lookup("#otherField").query();
+        String inputText6 = "90.0";
+        robot.clickOn("#otherField").write(inputText6);
+        assertThat("La valeur du champ de texte est incorrecte.", textField6.getText(), equalTo(inputText6));
+
+        verifyThat("Créer", isVisible());
+        robot.clickOn("Créer");
+        robot.sleep(1000);
+    }
+
+    @Test
     public void shouldHaveIncomes(FxRobot robot) {
         verifyThat("#IncomeTable", isVisible());
 
