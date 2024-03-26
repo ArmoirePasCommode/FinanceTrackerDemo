@@ -53,7 +53,7 @@ public class Database {
     }
 
     private static boolean createTableIfNotExists() {
-        String createTables =
+        String createTableExpense =
                 """
                         CREATE TABLE IF NOT EXISTS expense(
                              date TEXT NOT NULL,
@@ -66,10 +66,27 @@ public class Database {
                              other REAL NOT NULL
                      );
                    """;
+        String createTableIncome =
+                """
+                     CREATE TABLE IF NOT EXISTS income(
+                             date TEXT NOT NULL,
+                             salary REAL NOT NULL,
+                             helpers REAL NOT NULL,
+                             autoBusiness REAL NOT NULL,
+                             passiveIncome REAL NOT NULL,
+                             other REAL NOT NULL
+                     );
+                   """;
 
         try (Connection connection = Database.connect()) {
-            PreparedStatement statement = connection.prepareStatement(createTables);
-            statement.executeUpdate();
+            try (PreparedStatement statementExpense = connection.prepareStatement(createTableExpense)) {
+                statementExpense.executeUpdate();
+            } // The try-with-resources statement ensures that the PreparedStatement is closed after execution
+
+            // Create the "income" table
+            try (PreparedStatement statementIncome = connection.prepareStatement(createTableIncome)) {
+                statementIncome.executeUpdate();
+            }
             return true;
         } catch (SQLException exception) {
             log.error("Could not create tables in database", exception);

@@ -2,6 +2,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,6 +30,16 @@
                         <NumberAxis fx:id="yAxis" side="LEFT" label="Montant"/>
                     </yAxis>
                 </LineChart>
+            </HBox>
+            <HBox alignment="CENTER">
+                <BarChart fx:id="barChart" title="Dépenses VS Revenus">
+                    <xAxis>
+                        <CategoryAxis fx:id="barChartXAxis" side="BOTTOM" label="Date"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="barChartYAxis" label="Montant"/>
+                    </yAxis>
+                </BarChart>
             </HBox>
         </VBox>
     </center>

@@ -90,32 +90,33 @@ public class IncomesTest {
 
     @Test
     public void shouldHaveButtonAdd(FxRobot robot) {
-        verifyThat("#", isVisible());
+        verifyThat("#addIncome", isVisible());
 
-        robot.clickOn("");
+        robot.clickOn("#addIncome");
 
         verifyThat("#", isVisible());
 
         verifyThat(".title-text", hasText("Tableau récapitulatif des revenus"));
 
-        verifyThat("#myTextField", isVisible());
+        verifyThat("#dateField", isVisible());
 
-        TextField textField = robot.lookup("#myTextField").query();
+        TextField textField = robot.lookup("#dateField").query();
 
-        String inputText = "Test Input";
-        robot.clickOn("#myTextField").write(inputText);
+        String inputText = "01/01/2021";
+        robot.clickOn("#dateField").write(inputText);
 
         assertThat("La valeur du champ de texte est incorrecte.", textField.getText(), equalTo(inputText));
+        verifyThat("#cancelButton", isVisible());
 
-        robot.press(KeyCode.X).release(KeyCode.X);
+        robot.clickOn("#cancelButton");
         robot.sleep(1000);
     }
 
     @Test
     public void shouldHaveIncomes(FxRobot robot) {
-        verifyThat("#expenseTable", isVisible());
+        verifyThat("#IncomeTable", isVisible());
 
-        TableView<?> expenseTable = robot.lookup("#expenseTable").queryAs(TableView.class);
+        TableView<?> expenseTable = robot.lookup("#IncomeTable").queryAs(TableView.class);
 
         assertColumnExists(expenseTable, "Période");
         assertColumnExists(expenseTable, "Total");
