@@ -38,5 +38,5 @@
     </content>
 
     <ButtonType fx:id="createButton" text="Créer" buttonData="OK_DONE"/>
-    <ButtonType fx:id="cancelButton" text="Annuler" buttonData="CANCEL_CLOSE"/>
+    <ButtonType text="Annuler" buttonData="CANCEL_CLOSE"/>
 </DialogPane>

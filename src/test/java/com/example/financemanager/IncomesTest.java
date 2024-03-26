@@ -90,11 +90,9 @@ public class IncomesTest {
 
     @Test
     public void shouldHaveButtonAdd(FxRobot robot) {
-        verifyThat("#addIncome", isVisible());
+        verifyThat("Ajouter", isVisible());
 
-        robot.clickOn("#addIncome");
-
-        verifyThat("#", isVisible());
+        robot.clickOn("Ajouter");
 
         verifyThat(".title-text", hasText("Tableau récapitulatif des revenus"));
 
@@ -102,13 +100,13 @@ public class IncomesTest {
 
         TextField textField = robot.lookup("#dateField").query();
 
-        String inputText = "01/01/2021";
+        String inputText = "01/01/21";
         robot.clickOn("#dateField").write(inputText);
 
         assertThat("La valeur du champ de texte est incorrecte.", textField.getText(), equalTo(inputText));
-        verifyThat("#cancelButton", isVisible());
+        verifyThat("Annuler", isVisible());
 
-        robot.clickOn("#cancelButton");
+        robot.clickOn("Annuler");
         robot.sleep(1000);
     }
 
@@ -120,10 +118,11 @@ public class IncomesTest {
 
         assertColumnExists(expenseTable, "Période");
         assertColumnExists(expenseTable, "Total");
-        assertColumnExists(expenseTable, "Logement");
-        assertColumnExists(expenseTable, "Nourriture");
-        assertColumnExists(expenseTable, "Sorties");
-        assertColumnExists(expenseTable, "Transport");
+        assertColumnExists(expenseTable, "Salaire");
+        assertColumnExists(expenseTable, "Aides");
+        assertColumnExists(expenseTable, "Auto-entreprise");
+        assertColumnExists(expenseTable, "Revenus passifs");
+        assertColumnExists(expenseTable, "Autres");
     }
 
     private void assertColumnExists(TableView<?> table, String columnName) {
